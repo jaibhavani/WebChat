@@ -1,0 +1,48 @@
+﻿@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+    ViewData["Title"] = "SpeechChat";
+}
+<div id="header">
+    <h1> jQuery Chatbot  v1.0</h1>
+</div>
+<div id="container">
+
+</div>
+<div id="controls">
+    <textarea id="txtMessage" placeholder="Enter your message here..."></textarea>
+    <button id="send">Send</button>
+    <button id="speak" onclick="EnableSpeak()">Speak</button>
+</div>
+<div id="audio"></div>
+@section Scripts
+{
+    <script type="text/javascript">
+
+    
+        alert("Entered");
+       // var myVoice = new p5.Speech();
+        var myRec = new p5.SpeechRec();
+        myRec.continuous = true; 
+        myRec.onResult = showResult;
+        myRec.start();
+
+
+        function showResult() {
+            alert("Entered Show Result");
+            alert("Result " + myRec.resultValue);
+            if (myRec.resultValue == true) {
+                
+                $('#txtMessage').val(myRec.resultString);
+            }
+        }
+        
+
+       
+
+    function EnableSpeak() {
+
+    }
+    </script>
+}

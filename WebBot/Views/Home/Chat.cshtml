@@ -1,0 +1,67 @@
+﻿@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+    ViewData["Title"] = "Chat";
+}
+<div id="header">
+    <h1> jQuery Chatbot  v1.0</h1>
+</div>
+<div id="container">
+
+</div>
+<div id="controls">
+    <textarea id="txtMessage" placeholder="Enter your message here..."></textarea>
+    <button id="send">Send</button>
+    <button id="speak" onclick="EnableSpeak()">Speak</button>
+</div>
+<div id="audio"></div>
+@section Scripts
+{
+<script type="text/javascript">
+    
+    if (annyang) {
+        alert("Entered");
+        var myVoice = new p5.Speech();
+        var commands = {
+            'what is my :accounttype account balance': function (accounttype) {
+
+                //alert('your ' + accounttype + ' balance as of today is $100');
+                $('#txtMessage').val('your ' + accounttype + '  account balance as of today is $100');
+                myVoice.speak('your ' + accounttype + ' account balance as of today is $50');
+            },
+            'what is my balance': function () {
+
+                //alert('tag ' + tag);
+            $('#txtMessage').val('your total  balance as of today is $100');
+            myVoice.speak('your  total balance as of today is $100');
+        },
+            'what is atm': function () {
+               // alert('ATM Is Automated Teller Machine')
+                $('#txtMessage').val('ATM Is Automated Teller Machine');
+                myVoice.speak('ATM Is Automated Teller Machine');
+            },
+            'show me *transaction': function (transactions) {
+                // alert('ATM Is Automated Teller Machine')
+                $('#txtMessage').val('You spent $2.50 at starbucs at Wells Fargo Uptown today at 8:30 am EST');
+                myVoice.speak('You spent $2.50 at starbucs at Wells Fargo Uptown today at 8:30 am EST');
+            },
+            'Hello *go': function (go) {
+                //alert('Hello Suhas')
+                $('#txtMessage').val('Hello Suhas');
+                myVoice.speak('Hello Suhas, How can i help you');
+               // speak('Hello Suhas');
+            }
+
+        };
+
+        annyang.addCommands(commands);
+
+        annyang.start();
+    }
+
+    function EnableSpeak() {
+       
+    }
+    </script>
+}
